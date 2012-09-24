@@ -97,13 +97,10 @@ Class RWI_Simple_Logging {
 				'publicly_queryable' => false,
 				'show_ui' => true,
 				'show_in_nav_menus' => true,
-				//'show_in_menu' => 'tools.php',
 				'show_in_admin_bar' => false,
-				'menu_position' => 80,
-				// 'menu_icon' => URL,
-				// TODO
+				'menu_position' => 300,
+				'menu_icon' => plugins_url( 'icon.png', __FILE__ ),
 				'capabilities' => array(
-				// Cribbed from http://plugins.svn.wordpress.org/wp-help/tags/0.3/wp-help.php
 					'publish_posts' => 'manage_options',
 					'edit_posts' => 'manage_options',
 					'edit_others_posts' => 'manage_options',

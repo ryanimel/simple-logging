@@ -55,3 +55,4 @@ function simple_logging_points_added( $condition, $user, $points ) {
 	$SimpleLogs->create_log_item( $user, $event, $desc, 'simple_points' );
 	
 }
+
