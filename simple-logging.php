@@ -41,3 +41,17 @@ function simple_logging_badges_removed( $badge_id, $user_id ) {
 	$SimpleLogs->create_log_item( $user_id, $event, $desc, 'simple_badges' );
 	
 }
+
+
+// Support for points being awarded.
+add_action( 'simplepoints_after_adding', 'simple_logging_points_added', 10, 3 );
+
+function simple_logging_points_added( $condition, $user, $points ) {
+	global $SimpleLogs;
+	
+	$event = 'Won ' . $points . ' points';
+	$desc = 'Triggered the &ldquo;' . get_the_title( $condition ) . '&rdquo; condition.';
+	
+	$SimpleLogs->create_log_item( $user, $event, $desc, 'simple_points' );
+	
+}

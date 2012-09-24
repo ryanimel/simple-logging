@@ -7,7 +7,7 @@ Class RWI_Simple_Logging {
 	 * @var SimpleBadges
 	 */
 	static $instance = false;
-	
+
 	
 	/*
 	 * This is our constructor, which is private to force the use of
@@ -18,9 +18,9 @@ Class RWI_Simple_Logging {
 	public function __construct() {
 
 		add_action( 'init', array( $this, 'create_content_types' ) );
-		add_filter( 'manage_edit-simplelogging_item_columns', array( $this, 'set_log_columns' ) );
-		add_filter( 'manage_simplelogging_item_posts_custom_column', array( $this, 'set_log_custom_columns' ), 10, 2 );
-		add_filter( 'manage_edit-simplelogging_item_sortable_columns', array( $this, 'log_item_sortable_columns' ) );
+		add_filter( 'manage_edit-sl_item_columns', array( $this, 'set_log_columns' ) );
+		add_filter( 'manage_sl_item_posts_custom_column', array( $this, 'set_log_custom_columns' ), 10, 2 );
+		add_filter( 'manage_edit-sl_item_sortable_columns', array( $this, 'log_item_sortable_columns' ) );
 		
 	}
 	
@@ -47,7 +47,7 @@ Class RWI_Simple_Logging {
 			'post_content'	=> $desc,
 			'post_status'	=> 'publish',
 			'post_title'	=> 'temp',
-			'post_type'		=> 'simplelogging_item',
+			'post_type'		=> 'sl_item',
 			'post_name'		=> time() . uniqid()
 		);
 		
@@ -70,7 +70,7 @@ Class RWI_Simple_Logging {
 	public function create_content_types() {
 		
 		// Logging post type
-		register_post_type( 'simplelogging_item',
+		register_post_type( 'sl_item',
 			array(
 	 			
 				'labels' => array(
