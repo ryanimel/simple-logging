@@ -21,7 +21,9 @@ Class RWI_Simple_Logging {
 		add_filter( 'manage_edit-sl_item_columns', array( $this, 'set_log_columns' ) );
 		add_filter( 'manage_sl_item_posts_custom_column', array( $this, 'set_log_custom_columns' ), 10, 2 );
 		add_filter( 'manage_edit-sl_item_sortable_columns', array( $this, 'log_item_sortable_columns' ) );
-		
+		add_action( 'admin_menu', array( $this, 'remove_add_new' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'scripts' ) );
+
 	}
 	
 	
@@ -119,6 +121,29 @@ Class RWI_Simple_Logging {
 	 		)
 	 	);
 		
+	}
+	
+	
+	/**
+	 * Removes add new
+	 */
+	public function remove_add_new() {
+		global $submenu;
+		unset( $submenu['edit.php?post_type=sl_item'][10] );		
+	}
+	
+	
+	/**
+	 * Add our admin scripts
+	 */
+	public function scripts() {
+		global $typenow, $pagenow;
+		
+		if ( ( $pagenow == 'edit.php' || $pagenow == 'post.php' ) && $typenow == 'sl_item' ) {
+			wp_register_style( 'simple-logging-css', plugins_url( '/css/simple-logging.css', __FILE__ ) );
+			wp_enqueue_style( 'simple-logging-css' );
+		}
+
 	}
 	
 	
