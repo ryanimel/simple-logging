@@ -159,7 +159,7 @@ Class RWI_Simple_Logging {
 			
 			case 'user' :
 				$user = get_user_by( 'id', get_post_meta( $post_id, $type . '_user_id', true ) );
-				echo $user->user_login;
+				echo $user->display_name;
 				break;
 				
 			case 'event' :

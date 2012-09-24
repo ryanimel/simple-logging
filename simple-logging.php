@@ -49,8 +49,8 @@ add_action( 'simplepoints_after_adding', 'simple_logging_points_added', 10, 3 );
 function simple_logging_points_added( $condition, $user, $points ) {
 	global $SimpleLogs;
 	
-	$event = 'Won ' . $points . ' points';
-	$desc = 'Triggered the &ldquo;' . get_the_title( $condition ) . '&rdquo; condition.';
+	$event = $points . ' points';
+	$desc = get_the_title( $condition );
 	
 	$SimpleLogs->create_log_item( $user, $event, $desc, 'simple_points' );
 	
